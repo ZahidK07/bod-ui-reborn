@@ -60,6 +60,58 @@
   body {
     @apply bg-background text-foreground font-inter;
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+  
+  /* Mobile-first responsive improvements */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Touch targets for mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Better mobile spacing */
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1320px;
+    }
   }
 }
 
@@ -69,14 +121,103 @@
   }
   
   .fitness-card {
-    @apply bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-300;
+    @apply bg-card border border-border rounded-lg p-3 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300;
   }
   
   .fitness-btn-primary {
-    @apply bg-fitness-blue-600 hover:bg-fitness-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply bg-fitness-blue-600 hover:bg-fitness-blue-700 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
   }
   
   .fitness-btn-secondary {
-    @apply bg-fitness-orange-500 hover:bg-fitness-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply bg-fitness-orange-500 hover:bg-fitness-orange-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  /* Mobile-optimized utilities */
+  .text-responsive {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+  
+  .heading-responsive {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  .subheading-responsive {
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+  }
+  
+  /* Better mobile touch interactions */
+  .btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Improved mobile navigation */
+  .navbar-collapse {
+    background-color: hsl(var(--background));
+    border-radius: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 1rem;
+    border: 1px solid hsl(var(--border));
+  }
+  
+  /* Mobile-first image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Better mobile form elements */
+  .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Mobile-optimized progress bars */
+  .progress {
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  
+  /* Enhanced mobile card layout */
+  .card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  
+  /* Mobile-friendly badges */
+  .badge {
+    font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* Mobile-specific responsive breakpoints */
+@media (max-width: 575.98px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  
+  .row > * {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .fitness-card {
+    @apply p-4;
+  }
+}
+
+/* Large mobile/small tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .heading-responsive {
+    font-size: clamp(2rem, 5vw, 3rem);
   }
 }

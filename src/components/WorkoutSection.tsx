@@ -56,59 +56,63 @@ const WorkoutSection: React.FC = () => {
   };
 
   return (
-    <section id="workouts" className="py-5 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-5">
-          <h2 className="display-5 fw-bold mb-3 text-foreground">Featured Workouts</h2>
-          <p className="lead text-muted-foreground mb-4">
+    <section id="workouts" className="py-4 py-sm-5 bg-background">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="text-center mb-4 mb-sm-5">
+          <h2 className="fw-bold mb-3 text-foreground" style={{fontSize: 'clamp(1.75rem, 4vw, 2.5rem)'}}>Featured Workouts</h2>
+          <p className="text-muted-foreground mb-3 mb-sm-4" style={{fontSize: 'clamp(0.9rem, 2vw, 1.25rem)'}}>
             Professional workout routines designed by certified trainers
           </p>
-          <div className="d-flex justify-content-center gap-2 flex-wrap">
-            <button className="btn btn-outline-primary">All</button>
-            <button className="btn btn-outline-secondary">Strength</button>
-            <button className="btn btn-outline-secondary">Cardio</button>
-            <button className="btn btn-outline-secondary">Core</button>
+          
+          {/* Filter buttons - Responsive layout */}
+          <div className="d-flex justify-content-center gap-1 gap-sm-2 flex-wrap">
+            <button className="btn btn-outline-primary btn-sm px-3 py-2">All</button>
+            <button className="btn btn-outline-secondary btn-sm px-3 py-2">Strength</button>
+            <button className="btn btn-outline-secondary btn-sm px-3 py-2">Cardio</button>
+            <button className="btn btn-outline-secondary btn-sm px-3 py-2">Core</button>
           </div>
         </div>
 
-        <div className="row g-4">
+        {/* Workout cards - Responsive grid */}
+        <div className="row g-3 g-sm-4">
           {workouts.map((workout) => (
-            <div key={workout.id} className="col-lg-6 col-xl-3">
+            <div key={workout.id} className="col-12 col-sm-6 col-lg-4 col-xl-3">
               <div className="fitness-card h-100 hover:scale-105 transition-transform">
                 <div className="position-relative mb-3">
                   <img 
                     src={workout.image} 
                     alt={workout.title}
                     className="w-100 rounded-lg"
-                    style={{height: '200px', objectFit: 'cover'}}
+                    style={{height: 'clamp(150px, 20vw, 200px)', objectFit: 'cover'}}
                   />
                   <div className="position-absolute top-0 end-0 m-2">
-                    <span className={`badge bg-${getDifficultyColor(workout.difficulty)}`}>
+                    <span className={`badge bg-${getDifficultyColor(workout.difficulty)}`} style={{fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)'}}>
                       {workout.difficulty}
                     </span>
                   </div>
                   <div className="position-absolute bottom-0 start-0 m-2">
-                    <span className="badge bg-dark bg-opacity-75">
+                    <span className="badge bg-dark bg-opacity-75" style={{fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)'}}>
                       {workout.category}
                     </span>
                   </div>
                 </div>
                 
-                <h5 className="fw-bold mb-2 text-foreground">{workout.title}</h5>
-                <p className="text-muted-foreground mb-3 small">{workout.description}</p>
+                <h5 className="fw-bold mb-2 text-foreground" style={{fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'}}>{workout.title}</h5>
+                <p className="text-muted-foreground mb-3" style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)', lineHeight: '1.4'}}>{workout.description}</p>
                 
-                <div className="d-flex justify-content-between align-items-center mb-3 small text-muted-foreground">
+                {/* Workout details - Responsive layout */}
+                <div className="d-flex justify-content-between align-items-center mb-3 text-muted-foreground" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>
                   <div className="d-flex align-items-center gap-1">
-                    <Clock size={16} />
+                    <Clock size={14} />
                     <span>{workout.duration}</span>
                   </div>
                   <div className="d-flex align-items-center gap-1">
-                    <Target size={16} />
+                    <Target size={14} />
                     <span>{workout.exercises} exercises</span>
                   </div>
                 </div>
                 
-                <button className="btn btn-primary w-100 fw-semibold">
+                <button className="btn btn-primary w-100 fw-semibold py-2 py-sm-3" style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>
                   Start Workout
                 </button>
               </div>
@@ -116,8 +120,9 @@ const WorkoutSection: React.FC = () => {
           ))}
         </div>
 
-        <div className="text-center mt-5">
-          <button className="btn btn-outline-primary btn-lg px-5">
+        {/* View all button */}
+        <div className="text-center mt-4 mt-sm-5">
+          <button className="btn btn-outline-primary btn-lg px-4 px-sm-5 py-2 py-sm-3">
             View All Workouts
           </button>
         </div>

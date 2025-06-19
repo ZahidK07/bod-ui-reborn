@@ -5,25 +5,25 @@ import { Apple, BookOpen, Calculator, TrendingUp } from 'lucide-react';
 const NutritionSection: React.FC = () => {
   const nutritionCards = [
     {
-      icon: <Apple size={32} />,
+      icon: <Apple size={28} />,
       title: "Meal Plans",
       description: "Custom meal plans designed for your fitness goals",
       color: "success"
     },
     {
-      icon: <Calculator size={32} />,
+      icon: <Calculator size={28} />,
       title: "Macro Calculator",
       description: "Calculate your daily macronutrient requirements",
       color: "info"
     },
     {
-      icon: <BookOpen size={32} />,
+      icon: <BookOpen size={28} />,
       title: "Nutrition Guides",
       description: "Expert articles on nutrition and healthy eating",
       color: "warning"
     },
     {
-      icon: <TrendingUp size={32} />,
+      icon: <TrendingUp size={28} />,
       title: "Progress Tracking",
       description: "Track your nutrition goals and achievements",
       color: "primary"
@@ -61,26 +61,26 @@ const NutritionSection: React.FC = () => {
   ];
 
   return (
-    <section id="nutrition" className="py-5 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-5">
-          <h2 className="display-5 fw-bold mb-3 text-foreground">Nutrition Hub</h2>
-          <p className="lead text-muted-foreground">
+    <section id="nutrition" className="py-4 py-sm-5 bg-muted/30">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="text-center mb-4 mb-sm-5">
+          <h2 className="fw-bold mb-3 text-foreground" style={{fontSize: 'clamp(1.75rem, 4vw, 2.5rem)'}}>Nutrition Hub</h2>
+          <p className="text-muted-foreground" style={{fontSize: 'clamp(0.9rem, 2vw, 1.25rem)'}}>
             Fuel your body with science-based nutrition strategies
           </p>
         </div>
 
-        {/* Nutrition Tools */}
-        <div className="row g-4 mb-5">
+        {/* Nutrition Tools - Responsive grid */}
+        <div className="row g-3 g-sm-4 mb-4 mb-sm-5">
           {nutritionCards.map((card, index) => (
-            <div key={index} className="col-lg-3 col-md-6">
-              <div className="fitness-card text-center h-100">
-                <div className={`text-${card.color} mb-3`}>
-                  {card.icon}
+            <div key={index} className="col-6 col-lg-3">
+              <div className="fitness-card text-center h-100 p-3 p-sm-4">
+                <div className={`text-${card.color} mb-2 mb-sm-3`}>
+                  {React.cloneElement(card.icon, { size: window.innerWidth < 576 ? 24 : 28 })}
                 </div>
-                <h5 className="fw-bold mb-2 text-foreground">{card.title}</h5>
-                <p className="text-muted-foreground small mb-3">{card.description}</p>
-                <button className={`btn btn-${card.color} btn-sm fw-semibold`}>
+                <h5 className="fw-bold mb-2 text-foreground" style={{fontSize: 'clamp(0.9rem, 2.5vw, 1.25rem)'}}>{card.title}</h5>
+                <p className="text-muted-foreground mb-2 mb-sm-3" style={{fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', lineHeight: '1.4'}}>{card.description}</p>
+                <button className={`btn btn-${card.color} btn-sm fw-semibold px-3 py-2`} style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>
                   Get Started
                 </button>
               </div>
@@ -88,38 +88,45 @@ const NutritionSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Featured Meal Plans */}
+        {/* Featured Meal Plans - Responsive layout */}
         <div className="row align-items-center">
-          <div className="col-lg-6">
-            <h3 className="fw-bold mb-3 text-foreground">Featured Meal Plans</h3>
-            <p className="text-muted-foreground mb-4">
+          <div className="col-12 col-lg-6 mb-4 mb-lg-0">
+            <h3 className="fw-bold mb-3 text-foreground" style={{fontSize: 'clamp(1.5rem, 3.5vw, 2rem)'}}>Featured Meal Plans</h3>
+            <p className="text-muted-foreground mb-3 mb-sm-4" style={{fontSize: 'clamp(0.85rem, 2vw, 1rem)', lineHeight: '1.5'}}>
               Choose from our professionally designed meal plans tailored to your specific fitness goals. 
               Each plan includes detailed recipes, shopping lists, and macro breakdowns.
             </p>
             
-            <div className="row g-3">
+            {/* Meal plan cards - Mobile optimized */}
+            <div className="row g-2 g-sm-3">
               {mealPlans.map((plan, index) => (
                 <div key={index} className="col-12">
                   <div className="card border-0 shadow-sm">
-                    <div className="card-body">
-                      <div className="row align-items-center">
-                        <div className="col-md-3">
+                    <div className="card-body p-3">
+                      <div className="row align-items-center g-2">
+                        <div className="col-3 col-sm-2">
                           <img 
                             src={plan.image} 
                             alt={plan.title}
                             className="w-100 rounded"
-                            style={{height: '80px', objectFit: 'cover'}}
+                            style={{height: 'clamp(50px, 10vw, 80px)', objectFit: 'cover'}}
                           />
                         </div>
-                        <div className="col-md-6">
-                          <h6 className="fw-bold mb-1">{plan.title}</h6>
-                          <small className="text-muted">{plan.meals} meals per day</small>
+                        <div className="col-6 col-sm-7">
+                          <h6 className="fw-bold mb-1" style={{fontSize: 'clamp(0.85rem, 2.2vw, 1.1rem)'}}>{plan.title}</h6>
+                          <small className="text-muted" style={{fontSize: 'clamp(0.7rem, 1.8vw, 0.875rem)'}}>{plan.meals} meals per day</small>
                         </div>
-                        <div className="col-md-3 text-end">
-                          <div className="small">
-                            <div>{plan.calories}</div>
-                            <div className="text-muted">
-                              P: {plan.protein} | C: {plan.carbs} | F: {plan.fat}
+                        <div className="col-3 col-sm-3 text-end">
+                          <div style={{fontSize: 'clamp(0.7rem, 1.8vw, 0.875rem)'}}>
+                            <div className="fw-semibold">{plan.calories}</div>
+                            <div className="text-muted d-none d-sm-block">
+                              P: {plan.protein}
+                            </div>
+                            <div className="text-muted d-none d-sm-block">
+                              C: {plan.carbs} | F: {plan.fat}
+                            </div>
+                            <div className="text-muted d-sm-none" style={{fontSize: '0.65rem'}}>
+                              {plan.protein} | {plan.carbs} | {plan.fat}
                             </div>
                           </div>
                         </div>
@@ -130,56 +137,57 @@ const NutritionSection: React.FC = () => {
               ))}
             </div>
             
-            <button className="btn btn-primary btn-lg mt-4 fw-semibold">
+            <button className="btn btn-primary btn-lg mt-3 mt-sm-4 fw-semibold w-100 w-sm-auto px-4 py-3">
               View All Meal Plans
             </button>
           </div>
           
-          <div className="col-lg-6 mt-4 mt-lg-0">
-            <div className="bg-primary bg-opacity-10 rounded-4 p-4">
-              <h4 className="fw-bold mb-3 text-primary">Daily Nutrition Tracker</h4>
+          {/* Nutrition Tracker - Mobile responsive */}
+          <div className="col-12 col-lg-6">
+            <div className="bg-primary bg-opacity-10 rounded-4 p-3 p-sm-4">
+              <h4 className="fw-bold mb-3 text-primary" style={{fontSize: 'clamp(1.25rem, 3vw, 1.5rem)'}}>Daily Nutrition Tracker</h4>
               
               <div className="mb-3">
                 <div className="d-flex justify-content-between mb-1">
-                  <span className="small fw-semibold">Calories</span>
-                  <span className="small">1,850 / 2,200</span>
+                  <span className="fw-semibold" style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>Calories</span>
+                  <span style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>1,850 / 2,200</span>
                 </div>
-                <div className="progress" style={{height: '8px'}}>
+                <div className="progress" style={{height: 'clamp(6px, 1.5vw, 8px)'}}>
                   <div className="progress-bar bg-primary" style={{width: '84%'}}></div>
                 </div>
               </div>
               
               <div className="mb-3">
                 <div className="d-flex justify-content-between mb-1">
-                  <span className="small fw-semibold">Protein</span>
-                  <span className="small">140g / 160g</span>
+                  <span className="fw-semibold" style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>Protein</span>
+                  <span style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>140g / 160g</span>
                 </div>
-                <div className="progress" style={{height: '8px'}}>
+                <div className="progress" style={{height: 'clamp(6px, 1.5vw, 8px)'}}>
                   <div className="progress-bar bg-success" style={{width: '87%'}}></div>
                 </div>
               </div>
               
               <div className="mb-3">
                 <div className="d-flex justify-content-between mb-1">
-                  <span className="small fw-semibold">Carbs</span>
-                  <span className="small">180g / 220g</span>
+                  <span className="fw-semibold" style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>Carbs</span>
+                  <span style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>180g / 220g</span>
                 </div>
-                <div className="progress" style={{height: '8px'}}>
+                <div className="progress" style={{height: 'clamp(6px, 1.5vw, 8px)'}}>
                   <div className="progress-bar bg-warning" style={{width: '82%'}}></div>
                 </div>
               </div>
               
-              <div className="mb-4">
+              <div className="mb-3 mb-sm-4">
                 <div className="d-flex justify-content-between mb-1">
-                  <span className="small fw-semibold">Fats</span>
-                  <span className="small">65g / 75g</span>
+                  <span className="fw-semibold" style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>Fats</span>
+                  <span style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>65g / 75g</span>
                 </div>
-                <div className="progress" style={{height: '8px'}}>
+                <div className="progress" style={{height: 'clamp(6px, 1.5vw, 8px)'}}>
                   <div className="progress-bar bg-info" style={{width: '87%'}}></div>
                 </div>
               </div>
               
-              <button className="btn btn-primary w-100 fw-semibold">
+              <button className="btn btn-primary w-100 fw-semibold py-2 py-sm-3" style={{fontSize: 'clamp(0.8rem, 2vw, 0.875rem)'}}>
                 Log Food
               </button>
             </div>

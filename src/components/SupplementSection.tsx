@@ -65,72 +65,72 @@ const SupplementSection: React.FC = () => {
   };
 
   return (
-    <section id="supplements" className="py-5 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-5">
-          <h2 className="display-5 fw-bold mb-3 text-foreground">Premium Supplements</h2>
-          <p className="lead text-muted-foreground">
+    <section id="supplements" className="py-4 py-sm-5 bg-background">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="text-center mb-4 mb-sm-5">
+          <h2 className="fw-bold mb-3 text-foreground" style={{fontSize: 'clamp(1.75rem, 4vw, 2.5rem)'}}>Premium Supplements</h2>
+          <p className="text-muted-foreground" style={{fontSize: 'clamp(0.9rem, 2vw, 1.25rem)'}}>
             High-quality supplements to support your fitness journey
           </p>
         </div>
 
-        {/* Categories */}
-        <div className="d-flex justify-content-center gap-2 flex-wrap mb-5">
-          <button className="btn btn-primary">All Products</button>
-          <button className="btn btn-outline-secondary">Protein</button>
-          <button className="btn btn-outline-secondary">Pre-Workout</button>
-          <button className="btn btn-outline-secondary">Recovery</button>
-          <button className="btn btn-outline-secondary">Vitamins</button>
+        {/* Categories - Responsive buttons */}
+        <div className="d-flex justify-content-center gap-1 gap-sm-2 flex-wrap mb-4 mb-sm-5">
+          <button className="btn btn-primary btn-sm px-3 py-2" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>All Products</button>
+          <button className="btn btn-outline-secondary btn-sm px-3 py-2" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>Protein</button>
+          <button className="btn btn-outline-secondary btn-sm px-3 py-2" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>Pre-Workout</button>
+          <button className="btn btn-outline-secondary btn-sm px-3 py-2" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>Recovery</button>
+          <button className="btn btn-outline-secondary btn-sm px-3 py-2" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>Vitamins</button>
         </div>
 
-        {/* Products Grid */}
-        <div className="row g-4 mb-5">
+        {/* Products Grid - Responsive layout */}
+        <div className="row g-3 g-sm-4 mb-4 mb-sm-5">
           {supplements.map((supplement) => (
-            <div key={supplement.id} className="col-lg-3 col-md-6">
-              <div className="fitness-card h-100 position-relative">
+            <div key={supplement.id} className="col-6 col-lg-4 col-xl-3">
+              <div className="fitness-card h-100 position-relative p-3">
                 {/* Badge */}
                 <div className="position-absolute top-0 start-0 m-2 z-index-1">
-                  <span className={`badge bg-${getBadgeColor(supplement.badge)}`}>
+                  <span className={`badge bg-${getBadgeColor(supplement.badge)}`} style={{fontSize: 'clamp(0.6rem, 1.5vw, 0.75rem)'}}>
                     {supplement.badge}
                   </span>
                 </div>
 
                 {/* Product Image */}
-                <div className="text-center mb-3">
+                <div className="text-center mb-2 mb-sm-3">
                   <img 
                     src={supplement.image} 
                     alt={supplement.name}
                     className="img-fluid rounded"
-                    style={{height: '200px', width: '200px', objectFit: 'cover'}}
+                    style={{height: 'clamp(120px, 25vw, 200px)', width: 'clamp(120px, 25vw, 200px)', objectFit: 'cover'}}
                   />
                 </div>
 
                 {/* Product Info */}
                 <div className="flex-grow-1">
-                  <div className="small text-muted mb-1">{supplement.brand}</div>
-                  <h6 className="fw-bold mb-2 text-foreground">{supplement.name}</h6>
+                  <div className="text-muted mb-1" style={{fontSize: 'clamp(0.7rem, 1.8vw, 0.875rem)'}}>{supplement.brand}</div>
+                  <h6 className="fw-bold mb-2 text-foreground" style={{fontSize: 'clamp(0.85rem, 2.2vw, 1.1rem)', lineHeight: '1.3'}}>{supplement.name}</h6>
                   
-                  {/* Rating */}
+                  {/* Rating - Mobile optimized */}
                   <div className="d-flex align-items-center gap-1 mb-2">
                     <div className="d-flex">
                       {[...Array(5)].map((_, i) => (
                         <Star 
                           key={i} 
-                          size={14} 
+                          size={12} 
                           className={i < Math.floor(supplement.rating) ? 'text-warning' : 'text-muted'} 
                           fill={i < Math.floor(supplement.rating) ? 'currentColor' : 'none'}
                         />
                       ))}
                     </div>
-                    <span className="small text-muted">
-                      {supplement.rating} ({supplement.reviews})
+                    <span className="text-muted" style={{fontSize: 'clamp(0.7rem, 1.6vw, 0.875rem)'}}>
+                      {supplement.rating} <span className="d-none d-sm-inline">({supplement.reviews})</span>
                     </span>
                   </div>
 
-                  {/* Benefits */}
-                  <div className="mb-3">
+                  {/* Benefits - Responsive badges */}
+                  <div className="mb-2 mb-sm-3">
                     {supplement.benefits.map((benefit, index) => (
-                      <span key={index} className="badge bg-secondary bg-opacity-25 text-secondary me-1 mb-1 small">
+                      <span key={index} className="badge bg-secondary bg-opacity-25 text-secondary me-1 mb-1" style={{fontSize: 'clamp(0.6rem, 1.4vw, 0.75rem)'}}>
                         {benefit}
                       </span>
                     ))}
@@ -139,21 +139,22 @@ const SupplementSection: React.FC = () => {
 
                 {/* Price and Actions */}
                 <div className="mt-auto">
-                  <div className="d-flex align-items-center justify-content-between mb-3">
+                  <div className="d-flex align-items-center justify-content-between mb-2 mb-sm-3">
                     <div>
-                      <span className="h5 fw-bold text-foreground">${supplement.price}</span>
-                      <span className="small text-muted text-decoration-line-through ms-2">
+                      <span className="fw-bold text-foreground" style={{fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'}}>${supplement.price}</span>
+                      <span className="text-muted text-decoration-line-through ms-1" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>
                         ${supplement.originalPrice}
                       </span>
                     </div>
-                    <div className="small text-success fw-semibold">
+                    <div className="text-success fw-semibold d-none d-sm-block" style={{fontSize: 'clamp(0.7rem, 1.6vw, 0.875rem)'}}>
                       Save ${(supplement.originalPrice - supplement.price).toFixed(2)}
                     </div>
                   </div>
                   
-                  <button className="btn btn-primary w-100 fw-semibold">
-                    <ShoppingCart size={16} className="me-2" />
-                    Add to Cart
+                  <button className="btn btn-primary w-100 fw-semibold py-2" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)'}}>
+                    <ShoppingCart size={14} className="me-1 d-none d-sm-inline" />
+                    <span className="d-none d-sm-inline">Add to Cart</span>
+                    <span className="d-sm-none">Add</span>
                   </button>
                 </div>
               </div>
@@ -161,37 +162,37 @@ const SupplementSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Features */}
-        <div className="row g-4 mt-5">
-          <div className="col-lg-4">
+        {/* Features - Responsive layout */}
+        <div className="row g-3 g-sm-4 mt-4 mt-sm-5">
+          <div className="col-12 col-sm-4">
             <div className="text-center">
-              <div className="fitness-gradient rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{width: '60px', height: '60px'}}>
-                <Award className="text-white" size={28} />
+              <div className="fitness-gradient rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 mb-sm-3" style={{width: 'clamp(50px, 12vw, 60px)', height: 'clamp(50px, 12vw, 60px)'}}>
+                <Award className="text-white" size={window.innerWidth < 576 ? 20 : 28} />
               </div>
-              <h5 className="fw-bold mb-2">Quality Guaranteed</h5>
-              <p className="text-muted-foreground small">
+              <h5 className="fw-bold mb-2" style={{fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'}}>Quality Guaranteed</h5>
+              <p className="text-muted-foreground" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)', lineHeight: '1.4'}}>
                 All products are third-party tested for purity and potency
               </p>
             </div>
           </div>
-          <div className="col-lg-4">
+          <div className="col-12 col-sm-4">
             <div className="text-center">
-              <div className="fitness-gradient rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{width: '60px', height: '60px'}}>
-                <Zap className="text-white" size={28} />
+              <div className="fitness-gradient rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 mb-sm-3" style={{width: 'clamp(50px, 12vw, 60px)', height: 'clamp(50px, 12vw, 60px)'}}>
+                <Zap className="text-white" size={window.innerWidth < 576 ? 20 : 28} />
               </div>
-              <h5 className="fw-bold mb-2">Fast Shipping</h5>
-              <p className="text-muted-foreground small">
+              <h5 className="fw-bold mb-2" style={{fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'}}>Fast Shipping</h5>
+              <p className="text-muted-foreground" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)', lineHeight: '1.4'}}>
                 Free shipping on orders over $75. Express delivery available
               </p>
             </div>
           </div>
-          <div className="col-lg-4">
+          <div className="col-12 col-sm-4">
             <div className="text-center">
-              <div className="fitness-gradient rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{width: '60px', height: '60px'}}>
-                <Star className="text-white" size={28} />
+              <div className="fitness-gradient rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 mb-sm-3" style={{width: 'clamp(50px, 12vw, 60px)', height: 'clamp(50px, 12vw, 60px)'}}>
+                <Star className="text-white" size={window.innerWidth < 576 ? 20 : 28} />
               </div>
-              <h5 className="fw-bold mb-2">Expert Approved</h5>
-              <p className="text-muted-foreground small">
+              <h5 className="fw-bold mb-2" style={{fontSize: 'clamp(1rem, 2.5vw, 1.25rem)'}}>Expert Approved</h5>
+              <p className="text-muted-foreground" style={{fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)', lineHeight: '1.4'}}>
                 Recommended by certified nutritionists and trainers
               </p>
             </div>
