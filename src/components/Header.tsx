@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { Menu, Sun, Moon, User, Search, ShoppingCart } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, Sun, Moon, User, Search, ShoppingCart, X } from 'lucide-react';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -8,6 +8,16 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-background/80">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6">
@@ -72,29 +82,53 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
               <button 
                 className="btn btn-outline-secondary border-0 p-2 d-lg-none"
                 type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#mobileNav"
+                onClick={toggleMobileMenu}
                 aria-label="Toggle navigation"
+                aria-expanded={isMobileMenuOpen}
               >
-                <Menu size={20} />
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
 
-          {/* Mobile Navigation - Improved spacing and touch targets */}
-          <div className="collapse navbar-collapse mt-3 d-lg-none" id="mobileNav">
+          {/* Mobile Navigation - Controlled by React state */}
+          <div className={`navbar-collapse mt-3 d-lg-none ${isMobileMenuOpen ? 'show' : 'collapse'}`}>
             <ul className="navbar-nav gap-0">
               <li className="nav-item">
-                <a className="nav-link fw-semibold text-foreground py-3 px-0 border-bottom border-border" href="#workouts">Workouts</a>
+                <a 
+                  className="nav-link fw-semibold text-foreground py-3 px-0 border-bottom border-border" 
+                  href="#workouts"
+                  onClick={closeMobileMenu}
+                >
+                  Workouts
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link fw-semibold text-foreground py-3 px-0 border-bottom border-border" href="#nutrition">Nutrition</a>
+                <a 
+                  className="nav-link fw-semibold text-foreground py-3 px-0 border-bottom border-border" 
+                  href="#nutrition"
+                  onClick={closeMobileMenu}
+                >
+                  Nutrition
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link fw-semibold text-foreground py-3 px-0 border-bottom border-border" href="#supplements">Supplements</a>
+                <a 
+                  className="nav-link fw-semibold text-foreground py-3 px-0 border-bottom border-border" 
+                  href="#supplements"
+                  onClick={closeMobileMenu}
+                >
+                  Supplements
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link fw-semibold text-foreground py-3 px-0" href="#community">Community</a>
+                <a 
+                  className="nav-link fw-semibold text-foreground py-3 px-0" 
+                  href="#community"
+                  onClick={closeMobileMenu}
+                >
+                  Community
+                </a>
               </li>
             </ul>
             
